@@ -38,8 +38,25 @@ iss.penup()
 
 # input("stop")
 
+# Get starting position for ISS
+## Pull initial position data from NASA API json file 
+ISS_url_int = "http://api.open-notify.org/iss-now.json"
+response_int = urllib.request.urlopen(ISS_url_int)
+result_int = json.loads(response_int.read())
+location_int = result_int["iss_position"]
+
+## Get initial lat and long location 
+lat_int = float(location_int["latitude"])
+long_int = float(location_int["longitude"])
+
+# Go to initial position and then put the pen down for trace lines
+iss.goto(long_int, lat_int)
+iss.pendown() # Comment this out if you don't want trace lines
+# iss.pendown()
+
+
 while True:
-    # Load the current status of ISS in real time. 
+    # Load the status of ISS in real time. 
     ISS_url = "http://api.open-notify.org/iss-now.json"
     response = urllib.request.urlopen(ISS_url)
     result = json.loads(response.read())
