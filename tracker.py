@@ -77,4 +77,4 @@ while True:
     iss.goto(long, lat)
 
     # Refresh each 5 seconds
-    time.sleep(5)
+    time.sleep(2)
